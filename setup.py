@@ -14,14 +14,3 @@ setup(
     gplexer = gp_lexer:gpLexer
     """
 )
-
-setup(
-    name='LaTeX Pygments formatter',
-    version='1.0',
-    author = 'molinp@math.jussieu.fr',
-    packages=['latex_formatter'],
-    entry_points="""
-    [pygments.formatters]
-    latex_formatter = latex_formatter:LatexFormatter
-    """
-)
