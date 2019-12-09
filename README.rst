@@ -1,14 +1,19 @@
-simple gp lexer for pygments
+# pygments-gp-lexer
 
-installation
--------------
+simple pygments lexer for Pari/GP http://pari.math.u-bordeaux.fr
+
+## installation
 
 ::
 
   pip3 install .
 
-ou bien
+or
 
 ::
 
-  python setup.py install
+  python3 setup.py install
+
+## update
+
+

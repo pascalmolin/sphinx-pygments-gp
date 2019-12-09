@@ -5,174 +5,54 @@ from pygments.token import Text, Comment, Literal, Operator, Keyword, Name, Stri
 
 class Defs():
 
-  gpkeywords = {
-    'linear_algebra' : 
-    [ 'algdep', 'charpoly', 'concat', 'forqfvec', 'lindep', 'listcreate',
-      'listinsert', 'listkill', 'listpop', 'listput', 'listsort', 'matadjoint',
-      'matcompanion', 'matconcat', 'matdet', 'matdetint', 'matdiagonal',
-      'mateigen', 'matfrobenius', 'mathess', 'mathilbert', 'mathnf',
-      'mathnfmod', 'mathnfmodid', 'matid', 'matimage', 'matimagecompl',
-      'matindexrank', 'matintersect', 'matinverseimage', 'matisdiagonal',
-      'matker', 'matkerint', 'matmuldiagonal', 'matmultodiagonal', 'matpascal',
-      'matrank', 'matrix', 'matrixqz', 'matsize', 'matsnf', 'matsolve',
-      'matsolvemod', 'matsupplement', 'mattranspose', 'minpoly', 'qfgaussred',
-      'qfjacobi', 'qflll', 'qflllgram', 'qfminim', 'qfperfection', 'qfrep',
-      'qfsign', 'setbinop', 'setintersect', 'setisset', 'setminus',
-      'setsearch', 'setunion', 'trace', 'vecextract', 'vecsearch', 'vecsort',
-      'vector', 'vectorsmall', 'vectorv' ],
-    'symbolic_operators' : 
-    [ 'add', 'adde', 'and', 'call', 'coeff', 'compr', 'concat', 'deriv', 'div',
-      'dive', 'divent', 'divente', 'divround', 'divrounde', 'eq', 'fact', 'ge',
-      'gt', 'hist', 'id', 'le', 'lt', 'mm', 'mod', 'mode', 'mul', 'mule', 'ne',
-      'neg', 'not', 'or', 'pl', 'pound', 'pow', 'pp', 'range', 'shiftl',
-      'shiftle', 'shiftr', 'shiftre', 'slice', 'sub', 'sube', 'trans' ],
-    'conversions' : 
-    [ 'Col', 'List', 'Mat', 'Mod', 'Pol', 'Polrev', 'Qfb', 'Ser', 'Set', 'Str',
-      'Strchr', 'Strexpand', 'Strprintf', 'Strtex', 'Vec', 'Vecrev',
-      'Vecsmall', 'binary', 'bitand', 'bitneg', 'bitnegimply', 'bitor',
-      'bittest', 'bitxor', 'ceil', 'centerlift', 'component', 'conj',
-      'conjvec', 'denominator', 'digits', 'floor', 'frac', 'hammingweight',
-      'imag', 'length', 'lift', 'norm', 'norml2', 'numerator', 'numtoperm',
-      'padicprec', 'permtonum', 'precision', 'random', 'real', 'round',
-      'simplify', 'sizebyte', 'sizedigit', 'truncate', 'valuation', 'variable'
-      ],
-    'programming' : 
-    [ '_eval_mnemonic', 'addhelp', 'alarm', 'alias', 'allocatemem', 'apply',
-      'break', 'breakpoint', 'dbg_down', 'dbg_err', 'dbg_up', 'dbg_x',
-      'default', 'errname', 'error', 'extern', 'externstr', 'for',
-      'forcomposite', 'fordiv', 'forell', 'forpart', 'forprime', 'forstep',
-      'forsubgroup', 'forvec', 'getenv', 'getheap', 'getrand', 'getstack',
-      'gettime', 'global', 'if', 'iferr', 'iferrname', 'input', 'install',
-      'kill', 'local', 'my', 'next', 'print', 'print1', 'printf', 'printsep',
-      'printtex', 'quit', 'read', 'readvec', 'return', 'select', 'setrand',
-      'system', 'trap', 'type', 'until', 'version', 'warning', 'whatnow',
-      'while', 'write', 'write1', 'writebin', 'writetex' ],
-    'operators' : 
-    [ 'cmp', 'divrem', 'lex', 'max', 'min', 'shift', 'shiftmul', 'sign',
-      'vecmax', 'vecmin' ],
-    'number_theoretical' : 
-    [ 'addprimes', 'bestappr', 'bestapprPade', 'bezout', 'bezoutres',
-      'bigomega', 'binomial', 'chinese', 'content', 'contfrac', 'contfracpnqn',
-      'core', 'coredisc', 'dirdiv', 'direuler', 'dirmul', 'divisors',
-      'eulerphi', 'factor', 'factorback', 'factorcantor', 'factorff',
-      'factorial', 'factorint', 'factormod', 'ffgen', 'ffinit', 'fflog',
-      'ffnbirred', 'fforder', 'ffprimroot', 'fibonacci', 'gcd', 'hilbert',
-      'isfundamental', 'ispolygonal', 'ispower', 'ispowerful', 'isprime',
-      'isprimepower', 'ispseudoprime', 'issquare', 'issquarefree', 'istotient',
-      'kronecker', 'lcm', 'moebius', 'nextprime', 'numbpart', 'numdiv',
-      'omega', 'partitions', 'polrootsff', 'precprime', 'prime', 'primepi',
-      'primes', 'qfbclassno', 'qfbcompraw', 'qfbhclassno', 'qfbnucomp',
-      'qfbnupow', 'qfbpowraw', 'qfbprimeform', 'qfbred', 'qfbsolve',
-      'quadclassunit', 'quaddisc', 'quadgen', 'quadhilbert', 'quadpoly',
-      'quadray', 'quadregulator', 'quadunit', 'randomprime', 'removeprimes',
-      'sigma', 'sqrtint', 'stirling', 'sumdedekind', 'sumdigits',
-      'zncoppersmith', 'znlog', 'znorder', 'znprimroot', 'znstar' ],
-    'gp2c' : 
-    [ 'DEBUGLEVEL', 'clone', 'copy', 'unclone' ],
-    'elliptic_curves' : 
-    [ 'ellL1', 'elladd', 'ellak', 'ellan', 'ellanalyticrank', 'ellap',
-        'ellbil', 'ellcard', 'ellchangecurve', 'ellchangepoint',
-        'ellconvertname', 'elldivpol', 'elleisnum', 'elleta', 'ellffinit',
-        'ellfromj', 'ellgenerators', 'ellglobalred', 'ellgroup', 'ellheegner',
-        'ellheight', 'ellheightmatrix', 'ellidentify', 'ellinit',
-        'ellisoncurve', 'ellj', 'elllocalred', 'elllog', 'elllseries',
-        'ellminimalmodel', 'ellmodulareqn', 'ellmul', 'ellneg', 'ellorder',
-        'ellordinate', 'ellpointtoz', 'ellpow', 'ellrootno', 'ellsearch',
-        'ellsigma', 'ellsub', 'elltaniyama', 'elltatepairing', 'elltors',
-        'ellweilpairing', 'ellwp', 'ellzeta', 'ellztopoint' ],
-    'sums' : 
-    [ 'derivnum', 'intcirc', 'intfouriercos', 'intfourierexp', 'intfouriersin',
-        'intfuncinit', 'intlaplaceinv', 'intmellininv', 'intmellininvshort',
-        'intnum', 'intnuminit', 'intnuminitgen', 'intnumromb', 'intnumstep',
-        'prod', 'prodeuler', 'prodinf', 'solve', 'sum', 'sumalt', 'sumdiv',
-        'suminf', 'sumnum', 'sumnumalt', 'sumnuminit', 'sumpos' ],
-    'transcendental' : 
-    [ 'Catalan', 'Euler', 'I', 'Pi', 'abs', 'acos', 'acosh', 'agm', 'arg',
-        'asin', 'asinh', 'atan', 'atanh', 'bernfrac', 'bernpol', 'bernreal',
-        'bernvec', 'besselh1', 'besselh2', 'besseli', 'besselj', 'besseljh',
-        'besselk', 'besseln', 'cos', 'cosh', 'cotan', 'dilog', 'eint1', 'erfc',
-        'eta', 'exp', 'gamma', 'gammah', 'hyperu', 'incgam', 'incgamc',
-        'lngamma', 'log', 'polylog', 'psi', 'sin', 'sinh', 'sqr', 'sqrt',
-        'sqrtn', 'tan', 'tanh', 'teichmuller', 'theta', 'thetanullk', 'weber',
-        'zeta' ],
-    'default' : 
-    [ 'TeXstyle', 'breakloop', 'colors', 'compatible', 'datadir', 'debug',
-        'debugfiles', 'debugmem', 'echo', 'factor_add_primes', 'factor_proven',
-        'format', 'graphcolormap', 'graphcolors', 'help', 'histfile',
-        'histsize', 'lines', 'linewrap', 'log', 'logfile', 'new_galois_format',
-        'output', 'parisize', 'path', 'prettyprinter', 'primelimit', 'prompt',
-        'prompt_cont', 'psfile', 'readline', 'realprecision', 'recover',
-        'secure', 'seriesprecision', 'simplify', 'sopath', 'strictmatch',
-        'timer' ],
-    'graphic' : 
-    [ 'plot', 'plotbox', 'plotclip', 'plotcolor', 'plotcopy', 'plotcursor',
-        'plotdraw', 'ploth', 'plothraw', 'plothsizes', 'plotinit', 'plotkill',
-        'plotlines', 'plotlinetype', 'plotmove', 'plotpoints', 'plotpointsize',
-        'plotpointtype', 'plotrbox', 'plotrecth', 'plotrecthraw', 'plotrline',
-        'plotrmove', 'plotrpoint', 'plotscale', 'plotstring', 'psdraw',
-        'psploth', 'psplothraw' ],
-    'number_fields' : 
-    [ 'bnfcertify', 'bnfcompress', 'bnfdecodemodule', 'bnfinit',
-        'bnfisintnorm', 'bnfisnorm', 'bnfisprincipal', 'bnfissunit',
-        'bnfisunit', 'bnfnarrow', 'bnfsignunit', 'bnfsunit', 'bnrL1',
-        'bnrclassno', 'bnrclassnolist', 'bnrconductor', 'bnrconductorofchar',
-        'bnrdisc', 'bnrdisclist', 'bnrinit', 'bnrisconductor',
-        'bnrisprincipal', 'bnrrootnumber', 'bnrstark', 'dirzetak', 'factornf',
-        'galoisexport', 'galoisfixedfield', 'galoisgetpol', 'galoisidentify',
-        'galoisinit', 'galoisisabelian', 'galoisisnormal', 'galoispermtopol',
-        'galoissubcyclo', 'galoissubfields', 'galoissubgroups', 'idealadd',
-        'idealaddtoone', 'idealappr', 'idealchinese', 'idealcoprime',
-        'idealdiv', 'idealfactor', 'idealfactorback', 'idealfrobenius',
-        'idealhnf', 'idealintersect', 'idealinv', 'ideallist', 'ideallistarch',
-        'ideallog', 'idealmin', 'idealmul', 'idealnorm', 'idealnumden',
-        'idealpow', 'idealprimedec', 'idealramgroups', 'idealred', 'idealstar',
-        'idealtwoelt', 'idealval', 'matalgtobasis', 'matbasistoalg',
-        'modreverse', 'newtonpoly', 'nfalgtobasis', 'nfbasis', 'nfbasistoalg',
-        'nfdetint', 'nfdisc', 'nfeltadd', 'nfeltdiv', 'nfeltdiveuc',
-        'nfeltdivmodpr', 'nfeltdivrem', 'nfeltmod', 'nfeltmul',
-        'nfeltmulmodpr', 'nfeltnorm', 'nfeltpow', 'nfeltpowmodpr',
-        'nfeltreduce', 'nfeltreducemodpr', 'nfelttrace', 'nfeltval',
-        'nffactor', 'nffactorback', 'nffactormod', 'nfgaloisapply',
-        'nfgaloisconj', 'nfhilbert', 'nfhnf', 'nfhnfmod', 'nfinit',
-        'nfisideal', 'nfisincl', 'nfisisom', 'nfkermodpr', 'nfmodprinit',
-        'nfnewprec', 'nfroots', 'nfrootsof1', 'nfsnf', 'nfsolvemodpr',
-        'nfsubfields', 'polcompositum', 'polgalois', 'polred', 'polredabs',
-        'polredbest', 'polredord', 'poltschirnhaus', 'rnfalgtobasis',
-        'rnfbasis', 'rnfbasistoalg', 'rnfcharpoly', 'rnfconductor',
-        'rnfdedekind', 'rnfdet', 'rnfdisc', 'rnfeltabstorel', 'rnfeltdown',
-        'rnfeltreltoabs', 'rnfeltup', 'rnfequation', 'rnfhnfbasis',
-        'rnfidealabstorel', 'rnfidealdown', 'rnfidealhnf', 'rnfidealmul',
-        'rnfidealnormabs', 'rnfidealnormrel', 'rnfidealreltoabs',
-        'rnfidealtwoelt', 'rnfidealup', 'rnfinit', 'rnfisabelian', 'rnfisfree',
-        'rnfisnorm', 'rnfisnorminit', 'rnfkummer', 'rnflllgram',
-        'rnfnormgroup', 'rnfpolred', 'rnfpolredabs', 'rnfpseudobasis',
-        'rnfsteinitz', 'subgrouplist', 'zetak', 'zetakinit' ],
-    'gp2c_internal' : 
-    [ '_avma', '_badtype', '_cast', '_cgetg', '_const', '_formatcode',
-        '_gerepileall', '_gerepileupto', '_maxprime', '_stack_lim',
-        '_strtoclosure', '_tovec', '_typedef', '_wrap' ],
-    'polynomials' : 
-    [ 'O', 'deriv', 'diffop', 'eval', 'factorpadic', 'intformal', 'padicappr',
-        'padicfields', 'polchebyshev', 'polcoeff', 'polcyclo',
-        'polcyclofactors', 'poldegree', 'poldisc', 'poldiscreduced',
-        'polgraeffe', 'polhensellift', 'polhermite', 'polinterpolate',
-        'poliscyclo', 'poliscycloprod', 'polisirreducible', 'pollead',
-        'pollegendre', 'polrecip', 'polresultant', 'polroots', 'polrootsmod',
-        'polrootspadic', 'polsturm', 'polsubcyclo', 'polsylvestermatrix',
-        'polsym', 'poltchebi', 'polzagier', 'serconvol', 'serlaplace',
-        'serreverse', 'subst', 'substpol', 'substvec', 'sumformal', 'taylor',
-        'thue', 'thueinit' ],
-    'member_functions' : 
-    [ 'a1', 'a2', 'a3', 'a4', 'a6', 'area', 'b2', 'b4', 'b6', 'b8', 'bid',
-        'bnf', 'c4', 'c6', 'clgp', 'codiff', 'cyc', 'diff', 'disc', 'e', 'eta',
-        'f', 'fu', 'futu', 'gen', 'group', 'index', 'j', 'mod', 'nf', 'no',
-        'omega', 'orders', 'p', 'pol', 'r1', 'r2', 'reg', 'roots', 'sign',
-        't2', 'tate', 'tu', 'tufu', 'w', 'zk', 'zkst' ],
-    }
+    gpkeywords = {
+        'elliptic_curves' : 
+            [ 'ellL1', 'elladd', 'ellak', 'ellan', 'ellanalyticrank', 'ellap', 'ellbil', 'ellbsd', 'ellcard', 'ellchangecurve', 'ellchangepoint', 'ellchangepointinv', 'ellconvertname', 'elldivpol', 'elleisnum', 'elleta', 'ellfactorback', 'ellformaldifferential', 'ellformalexp', 'ellformallog', 'ellformalpoint', 'ellformalw', 'ellfromeqn', 'ellfromj', 'ellgenerators', 'ellglobalred', 'ellgroup', 'ellheegner', 'ellheight', 'ellheightmatrix', 'ellidentify', 'ellinit', 'ellintegralmodel', 'ellisdivisible', 'ellisogeny', 'ellisogenyapply', 'ellisomat', 'ellisoncurve', 'ellisotree', 'ellissupersingular', 'ellj', 'elllocalred', 'elllog', 'elllseries', 'ellminimaldisc', 'ellminimalmodel', 'ellminimaltwist', 'ellmoddegree', 'ellmodulareqn', 'ellmul', 'ellneg', 'ellnonsingularmultiple', 'ellorder', 'ellordinate', 'ellpadicL', 'ellpadicbsd', 'ellpadicfrobenius', 'ellpadicheight', 'ellpadicheightmatrix', 'ellpadiclambdamu', 'ellpadiclog', 'ellpadicregulator', 'ellpadics2', 'ellperiods', 'ellpointtoz', 'ellpow', 'ellratpoints', 'ellrootno', 'ellsea', 'ellsearch', 'ellsigma', 'ellsub', 'elltamagawa', 'elltaniyama', 'elltatepairing', 'elltors', 'elltwist', 'ellweilcurve', 'ellweilpairing', 'ellwp', 'ellxn', 'ellzeta', 'ellztopoint', 'genus2red', 'hyperellcharpoly', 'hyperellpadicfrobenius', 'hyperellratpoints' ],
+        'default' : 
+            [ 'TeXstyle', 'breakloop', 'colors', 'compatible', 'datadir', 'debug', 'debugfiles', 'debugmem', 'echo', 'factor_add_primes', 'factor_proven', 'format', 'graphcolormap', 'graphcolors', 'help', 'histfile', 'histsize', 'lines', 'linewrap', 'log', 'logfile', 'nbthreads', 'new_galois_format', 'output', 'parisize', 'parisizemax', 'path', 'plothsizes', 'prettyprinter', 'primelimit', 'prompt', 'prompt_cont', 'psfile', 'readline', 'realbitprecision', 'realprecision', 'recover', 'secure', 'seriesprecision', 'simplify', 'sopath', 'strictargs', 'strictmatch', 'threadsize', 'threadsizemax', 'timer' ],
+        'programming' : 
+            [ '_eval_mnemonic', 'addhelp', 'alarm', 'alias', 'allocatemem', 'apply', 'arity', 'break', 'breakpoint', 'call', 'dbg_down', 'dbg_err', 'dbg_up', 'dbg_x', 'default', 'errname', 'error', 'export', 'exportall', 'extern', 'externstr', 'fileclose', 'fileextern', 'fileflush', 'fileopen', 'fileread', 'filereadstr', 'filewrite', 'filewrite1', 'fold', 'for', 'forcomposite', 'fordiv', 'fordivfactored', 'forell', 'forfactored', 'forpart', 'forperm', 'forprime', 'forprimestep', 'forsquarefree', 'forstep', 'forsubgroup', 'forsubset', 'forvec', 'getabstime', 'getenv', 'getheap', 'getlocalbitprec', 'getlocalprec', 'getrand', 'getstack', 'gettime', 'getwalltime', 'global', 'if', 'iferr', 'inline', 'input', 'install', 'kill', 'listcreate', 'listinsert', 'listkill', 'listpop', 'listput', 'listsort', 'local', 'localbitprec', 'localprec', 'mapdelete', 'mapget', 'mapisdefined', 'mapput', 'my', 'next', 'parapply', 'pareval', 'parfor', 'parforprime', 'parforvec', 'parploth', 'parplothexport', 'parselect', 'parsum', 'parvector', 'print', 'print1', 'printf', 'printp', 'printsep', 'printsep1', 'printtex', 'quit', 'read', 'readstr', 'readvec', 'return', 'select', 'self', 'setrand', 'strchr', 'strexpand', 'strjoin', 'strprintf', 'strsplit', 'strtex', 'strtime', 'system', 'trap', 'type', 'unexport', 'unexportall', 'uninline', 'until', 'version', 'warning', 'whatnow', 'while', 'write', 'write1', 'writebin', 'writetex' ],
+        'combinatorics' : 
+            [ 'binomial', 'fibonacci', 'hammingweight', 'numbpart', 'numtoperm', 'partitions', 'permorder', 'permsign', 'permtonum', 'stirling' ],
+        'conversions' : 
+            [ 'Col', 'Colrev', 'List', 'Map', 'Mat', 'Mod', 'Pol', 'Polrev', 'Qfb', 'Ser', 'Set', 'Str', 'Vec', 'Vecrev', 'Vecsmall', 'binary', 'bitand', 'bitneg', 'bitnegimply', 'bitor', 'bitprecision', 'bittest', 'bitxor', 'ceil', 'centerlift', 'characteristic', 'component', 'conj', 'conjvec', 'denominator', 'digits', 'exponent', 'floor', 'frac', 'fromdigits', 'imag', 'length', 'lift', 'liftall', 'liftint', 'liftpol', 'norm', 'numerator', 'oo', 'padicprec', 'precision', 'random', 'real', 'round', 'serchop', 'serprec', 'simplify', 'sizebyte', 'sizedigit', 'truncate', 'valuation', 'varhigher', 'variable', 'variables', 'varlower' ],
+        'modular_symbols' : 
+            [ 'msatkinlehner', 'mscosets', 'mscuspidal', 'msdim', 'mseisenstein', 'mseval', 'msfarey', 'msfromcusp', 'msfromell', 'msfromhecke', 'msgetlevel', 'msgetsign', 'msgetweight', 'mshecke', 'msinit', 'msissymbol', 'mslattice', 'msnew', 'msomseval', 'mspadicL', 'mspadicinit', 'mspadicmoments', 'mspadicseries', 'mspathgens', 'mspathlog', 'mspetersson', 'mspolygon', 'msqexpansion', 'mssplit', 'msstar', 'mstooms' ],
+        'sums' : 
+            [ 'asympnum', 'asympnumraw', 'contfraceval', 'contfracinit', 'derivnum', 'intcirc', 'intfuncinit', 'intnum', 'intnumgauss', 'intnumgaussinit', 'intnuminit', 'intnumromb', 'laurentseries', 'limitnum', 'prod', 'prodeuler', 'prodeulerrat', 'prodinf', 'prodnumrat', 'solve', 'solvestep', 'sum', 'sumalt', 'sumdiv', 'sumdivmult', 'sumeulerrat', 'suminf', 'sumnum', 'sumnumap', 'sumnumapinit', 'sumnuminit', 'sumnumlagrange', 'sumnumlagrangeinit', 'sumnummonien', 'sumnummonieninit', 'sumnumrat', 'sumpos' ],
+        'linear_algebra' : 
+            [ 'algdep', 'charpoly', 'concat', 'dirpowers', 'forqfvec', 'lindep', 'matadjoint', 'matcompanion', 'matconcat', 'matdet', 'matdetint', 'matdetmod', 'matdiagonal', 'mateigen', 'matfrobenius', 'mathess', 'mathilbert', 'mathnf', 'mathnfmod', 'mathnfmodid', 'mathouseholder', 'matid', 'matimage', 'matimagecompl', 'matimagemod', 'matindexrank', 'matintersect', 'matinverseimage', 'matinvmod', 'matisdiagonal', 'matker', 'matkerint', 'matkermod', 'matmuldiagonal', 'matmultodiagonal', 'matpascal', 'matpermanent', 'matqr', 'matrank', 'matrix', 'matrixqz', 'matsize', 'matsnf', 'matsolve', 'matsolvemod', 'matsupplement', 'mattranspose', 'minpoly', 'norml2', 'normlp', 'powers', 'qfauto', 'qfautoexport', 'qfbil', 'qfeval', 'qfgaussred', 'qfisom', 'qfisominit', 'qfjacobi', 'qflll', 'qflllgram', 'qfminim', 'qfnorm', 'qforbits', 'qfparam', 'qfperfection', 'qfrep', 'qfsign', 'qfsolve', 'seralgdep', 'setbinop', 'setintersect', 'setisset', 'setminus', 'setsearch', 'setunion', 'trace', 'vecextract', 'vecprod', 'vecsearch', 'vecsort', 'vecsum', 'vector', 'vectorsmall', 'vectorv' ],
+        'symbolic_operators' : 
+            [ 'add', 'adde', 'and', 'call', 'coeff', 'compr', 'concat', 'deriv', 'div', 'dive', 'divent', 'divente', 'divround', 'divrounde', 'eq', 'fact', 'ge', 'gt', 'hist', 'id', 'le', 'lt', 'mm', 'mod', 'mode', 'mul', 'mule', 'ne', 'neg', 'not', 'or', 'pl', 'pound', 'pow', 'pp', 'range', 'shiftl', 'shiftle', 'shiftr', 'shiftre', 'slice', 'sub', 'sube', 'trans' ],
+        'l_functions' : 
+            [ 'lfun', 'lfunabelianrelinit', 'lfunan', 'lfunartin', 'lfuncheckfeq', 'lfunconductor', 'lfuncost', 'lfuncreate', 'lfundiv', 'lfunetaquo', 'lfungenus2', 'lfunhardy', 'lfuninit', 'lfunlambda', 'lfunmfspec', 'lfunmul', 'lfunorderzero', 'lfunqf', 'lfunrootres', 'lfunsympow', 'lfuntheta', 'lfunthetacost', 'lfunthetainit', 'lfuntwist', 'lfunzeros' ],
+        'algebras' : 
+            [ 'algadd', 'algalgtobasis', 'algaut', 'algb', 'algbasis', 'algbasistoalg', 'algcenter', 'algcentralproj', 'algchar', 'algcharpoly', 'algdegree', 'algdim', 'algdisc', 'algdivl', 'algdivr', 'alggroup', 'alggroupcenter', 'alghasse', 'alghassef', 'alghassei', 'algindex', 'alginit', 'alginv', 'alginvbasis', 'algisassociative', 'algiscommutative', 'algisdivision', 'algisdivl', 'algisinv', 'algisramified', 'algissemisimple', 'algissimple', 'algissplit', 'alglatadd', 'alglatcontains', 'alglatelement', 'alglathnf', 'alglatindex', 'alglatinter', 'alglatlefttransporter', 'alglatmul', 'alglatrighttransporter', 'alglatsubset', 'algmakeintegral', 'algmul', 'algmultable', 'algneg', 'algnorm', 'algpoleval', 'algpow', 'algprimesubalg', 'algquotient', 'algradical', 'algramifiedplaces', 'algrandom', 'algrelmultable', 'algsimpledec', 'algsplit', 'algsplittingdata', 'algsplittingfield', 'algsqr', 'algsub', 'algsubalg', 'algtableinit', 'algtensor', 'algtomatrix', 'algtrace', 'algtype' ],
+        'member_functions' : 
+            [ 'a1', 'a2', 'a3', 'a4', 'a6', 'area', 'b2', 'b4', 'b6', 'b8', 'bid', 'bnf', 'c4', 'c6', 'clgp', 'codiff', 'cyc', 'diff', 'disc', 'e', 'eta', 'f', 'fu', 'gen', 'group', 'index', 'j', 'mod', 'nf', 'no', 'omega', 'orders', 'p', 'pol', 'polabs', 'r1', 'r2', 'reg', 'roots', 'sign', 't2', 'tate', 'tu', 'zk', 'zkst' ],
+        'graphic' : 
+            [ 'plot', 'plotbox', 'plotclip', 'plotcolor', 'plotcopy', 'plotcursor', 'plotdraw', 'plotexport', 'ploth', 'plothexport', 'plothraw', 'plothrawexport', 'plothsizes', 'plotinit', 'plotkill', 'plotlines', 'plotlinetype', 'plotmove', 'plotpoints', 'plotpointsize', 'plotpointtype', 'plotrbox', 'plotrecth', 'plotrecthraw', 'plotrline', 'plotrmove', 'plotrpoint', 'plotscale', 'plotstring', 'psdraw', 'psploth', 'psplothraw' ],
+        'number_fields' : 
+            [ 'bnfcertify', 'bnfdecodemodule', 'bnfinit', 'bnfisintnorm', 'bnfisnorm', 'bnfisprincipal', 'bnfissunit', 'bnfisunit', 'bnflog', 'bnflogdegree', 'bnflogef', 'bnfnarrow', 'bnfsignunit', 'bnfsunit', 'bnrL1', 'bnrchar', 'bnrclassfield', 'bnrclassno', 'bnrclassnolist', 'bnrconductor', 'bnrconductorofchar', 'bnrdisc', 'bnrdisclist', 'bnrgaloisapply', 'bnrgaloismatrix', 'bnrinit', 'bnrisconductor', 'bnrisgalois', 'bnrisprincipal', 'bnrrootnumber', 'bnrstark', 'dirzetak', 'factornf', 'galoischardet', 'galoischarpoly', 'galoischartable', 'galoisconjclasses', 'galoisexport', 'galoisfixedfield', 'galoisgetgroup', 'galoisgetname', 'galoisgetpol', 'galoisidentify', 'galoisinit', 'galoisisabelian', 'galoisisnormal', 'galoispermtopol', 'galoissubcyclo', 'galoissubfields', 'galoissubgroups', 'idealadd', 'idealaddtoone', 'idealappr', 'idealchinese', 'idealcoprime', 'idealdiv', 'idealdown', 'idealfactor', 'idealfactorback', 'idealfrobenius', 'idealhnf', 'idealintersect', 'idealinv', 'idealismaximal', 'idealispower', 'ideallist', 'ideallistarch', 'ideallog', 'idealmin', 'idealmul', 'idealnorm', 'idealnumden', 'idealpow', 'idealprimedec', 'idealprincipalunits', 'idealramgroups', 'idealred', 'idealredmodpower', 'idealstar', 'idealtwoelt', 'idealval', 'matalgtobasis', 'matbasistoalg', 'modreverse', 'newtonpoly', 'nfalgtobasis', 'nfbasis', 'nfbasistoalg', 'nfcertify', 'nfcompositum', 'nfdetint', 'nfdisc', 'nfdiscfactors', 'nfeltadd', 'nfeltdiv', 'nfeltdiveuc', 'nfeltdivmodpr', 'nfeltdivrem', 'nfeltembed', 'nfeltmod', 'nfeltmul', 'nfeltmulmodpr', 'nfeltnorm', 'nfeltpow', 'nfeltpowmodpr', 'nfeltreduce', 'nfeltreducemodpr', 'nfeltsign', 'nfelttrace', 'nfeltval', 'nffactor', 'nffactorback', 'nffactormod', 'nfgaloisapply', 'nfgaloisconj', 'nfgrunwaldwang', 'nfhilbert', 'nfhnf', 'nfhnfmod', 'nfinit', 'nfisideal', 'nfisincl', 'nfisisom', 'nfislocalpower', 'nfkermodpr', 'nfmodpr', 'nfmodprinit', 'nfmodprlift', 'nfnewprec', 'nfpolsturm', 'nfroots', 'nfrootsof1', 'nfsnf', 'nfsolvemodpr', 'nfsplitting', 'nfsubfields', 'polcompositum', 'polgalois', 'polred', 'polredabs', 'polredbest', 'polredord', 'poltschirnhaus', 'rnfalgtobasis', 'rnfbasis', 'rnfbasistoalg', 'rnfcharpoly', 'rnfconductor', 'rnfdedekind', 'rnfdet', 'rnfdisc', 'rnfeltabstorel', 'rnfeltdown', 'rnfeltnorm', 'rnfeltreltoabs', 'rnfelttrace', 'rnfeltup', 'rnfequation', 'rnfhnfbasis', 'rnfidealabstorel', 'rnfidealdown', 'rnfidealfactor', 'rnfidealhnf', 'rnfidealmul', 'rnfidealnormabs', 'rnfidealnormrel', 'rnfidealprimedec', 'rnfidealreltoabs', 'rnfidealtwoelt', 'rnfidealup', 'rnfinit', 'rnfisabelian', 'rnfisfree', 'rnfislocalcyclo', 'rnfisnorm', 'rnfisnorminit', 'rnfkummer', 'rnflllgram', 'rnfnormgroup', 'rnfpolred', 'rnfpolredabs', 'rnfpolredbest', 'rnfpseudobasis', 'rnfsteinitz', 'subgrouplist' ],
+        'operators' : 
+            [ 'cmp', 'divrem', 'lex', 'max', 'min', 'shift', 'shiftmul', 'sign', 'vecmax', 'vecmin' ],
+        'number_theoretical' : 
+            [ 'addprimes', 'bestappr', 'bestapprPade', 'bestapprnf', 'bezout', 'bigomega', 'charconj', 'chardiv', 'chareval', 'chargalois', 'charker', 'charmul', 'charorder', 'charpow', 'chinese', 'content', 'contfrac', 'contfracpnqn', 'core', 'coredisc', 'dirdiv', 'direuler', 'dirmul', 'divisors', 'divisorslenstra', 'eulerphi', 'factor', 'factorback', 'factorcantor', 'factorff', 'factorial', 'factorint', 'factormod', 'factormodDDF', 'factormodSQF', 'ffcompomap', 'ffembed', 'ffextend', 'fffrobenius', 'ffgen', 'ffinit', 'ffinvmap', 'fflog', 'ffmap', 'ffmaprel', 'ffnbirred', 'fforder', 'ffprimroot', 'gcd', 'gcdext', 'hilbert', 'isfundamental', 'ispolygonal', 'ispower', 'ispowerful', 'isprime', 'isprimepower', 'ispseudoprime', 'ispseudoprimepower', 'issquare', 'issquarefree', 'istotient', 'kronecker', 'lcm', 'logint', 'moebius', 'nextprime', 'numdiv', 'omega', 'precprime', 'prime', 'primecert', 'primecertexport', 'primecertisvalid', 'primepi', 'primes', 'qfbclassno', 'qfbcompraw', 'qfbhclassno', 'qfbnucomp', 'qfbnupow', 'qfbpowraw', 'qfbprimeform', 'qfbred', 'qfbredsl2', 'qfbsolve', 'quadclassunit', 'quaddisc', 'quadgen', 'quadhilbert', 'quadpoly', 'quadray', 'quadregulator', 'quadunit', 'ramanujantau', 'randomprime', 'removeprimes', 'sigma', 'sqrtint', 'sqrtnint', 'sumdedekind', 'sumdigits', 'znchar', 'zncharconductor', 'znchardecompose', 'znchargauss', 'zncharinduce', 'zncharisodd', 'znchartokronecker', 'znchartoprimitive', 'znconreychar', 'znconreyconductor', 'znconreyexp', 'znconreylog', 'zncoppersmith', 'znlog', 'znorder', 'znprimroot', 'znstar' ],
+        'gp2c' : 
+            [ 'DEBUGLEVEL', 'clone', 'copy', 'unclone' ],
+        'polynomials' : 
+            [ 'O', 'bezoutres', 'deriv', 'derivn', 'diffop', 'eval', 'factorpadic', 'fft', 'fftinit', 'fftinv', 'intformal', 'padicappr', 'padicfields', 'polchebyshev', 'polclass', 'polcoef', 'polcoeff', 'polcyclo', 'polcyclofactors', 'poldegree', 'poldisc', 'poldiscfactors', 'poldiscreduced', 'polgraeffe', 'polhensellift', 'polhermite', 'polinterpolate', 'poliscyclo', 'poliscycloprod', 'polisirreducible', 'pollaguerre', 'pollead', 'pollegendre', 'polmodular', 'polrecip', 'polresultant', 'polresultantext', 'polroots', 'polrootsbound', 'polrootsff', 'polrootsmod', 'polrootspadic', 'polrootsreal', 'polsturm', 'polsubcyclo', 'polsylvestermatrix', 'polsym', 'poltchebi', 'polteichmuller', 'polzagier', 'serconvol', 'serlaplace', 'serreverse', 'subst', 'substpol', 'substvec', 'sumformal', 'taylor', 'thue', 'thueinit' ],
+        'gp2c_internal' : 
+            [ '_avma', '_badtype', '_cast', '_cgetg', '_const', '_formatcode', '_gc_needed', '_gerepileall', '_gerepileupto', '_maxprime', '_norange', '_prec', '_stack_lim', '_strtoclosure', '_tovec', '_typedef', '_wrap' ],
+        'modular_forms' : 
+            [ 'getcache', 'lfunmf', 'mfDelta', 'mfEH', 'mfEk', 'mfTheta', 'mfatkin', 'mfatkineigenvalues', 'mfatkininit', 'mfbasis', 'mfbd', 'mfbracket', 'mfcoef', 'mfcoefs', 'mfconductor', 'mfcosets', 'mfcuspisregular', 'mfcusps', 'mfcuspval', 'mfcuspwidth', 'mfderiv', 'mfderivE2', 'mfdescribe', 'mfdim', 'mfdiv', 'mfeigenbasis', 'mfeigensearch', 'mfeisenstein', 'mfembed', 'mfeval', 'mffields', 'mffromell', 'mffrometaquo', 'mffromlfun', 'mffromqf', 'mfgaloisprojrep', 'mfgaloistype', 'mfhecke', 'mfheckemat', 'mfinit', 'mfisCM', 'mfisequal', 'mfisetaquo', 'mfkohnenbasis', 'mfkohnenbijection', 'mfkohneneigenbasis', 'mflinear', 'mfmanin', 'mfmul', 'mfnumcusps', 'mfparams', 'mfperiodpol', 'mfperiodpolbasis', 'mfpetersson', 'mfpow', 'mfsearch', 'mfshift', 'mfshimura', 'mfslashexpansion', 'mfspace', 'mfsplit', 'mfsturm', 'mfsymbol', 'mfsymboleval', 'mftaylor', 'mftobasis', 'mftocoset', 'mftonew', 'mftraceform', 'mftwist' ],
+        'transcendental' : 
+            [ 'Catalan', 'Euler', 'I', 'Pi', 'abs', 'acos', 'acosh', 'agm', 'airy', 'arg', 'asin', 'asinh', 'atan', 'atanh', 'bernfrac', 'bernpol', 'bernreal', 'bernvec', 'besselh1', 'besselh2', 'besseli', 'besselj', 'besseljh', 'besselk', 'besseln', 'bessely', 'cos', 'cosh', 'cotan', 'cotanh', 'dilog', 'eint1', 'ellE', 'ellK', 'erfc', 'eta', 'eulerfrac', 'eulerpol', 'eulervec', 'exp', 'expm1', 'gamma', 'gammah', 'gammamellininv', 'gammamellininvasymp', 'gammamellininvinit', 'hypergeom', 'hyperu', 'incgam', 'incgamc', 'lambertw', 'lngamma', 'log', 'log1p', 'polylog', 'psi', 'rootsof1', 'sin', 'sinc', 'sinh', 'sqr', 'sqrt', 'sqrtn', 'tan', 'tanh', 'teichmuller', 'theta', 'thetanullk', 'weber', 'zeta', 'zetahurwitz', 'zetamult', 'zetamultall', 'zetamultconvert', 'zetamultinit' ],
 
   select = [ 'linear_algebra', 'symbolic_operators', 'conversions',
       'operators', 'number_theoretical', 'elliptic_curves', 'sums',
-      'transcendental', 'default', 'graphic', 'number_fields', 'polynomials' ]
+      'transcendental', 'default', 'graphic', 'number_fields', 'polynomials',
+      'l_functions', 'modular_symbols', 'modular_forms' ]
 
 
 class gpLexer(RegexLexer):
