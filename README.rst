@@ -20,5 +20,5 @@ or
 To update the list of keywords::
 
   FUNCLIST=~/git/paridev/src/funclist
-  perl gp_lexer/get_gp_funclist.pl $FUNCLIST > gp_lexer/keywords.py
+  perl get_gp_funclist.pl $FUNCLIST > gp_lexer/keywords.py
 

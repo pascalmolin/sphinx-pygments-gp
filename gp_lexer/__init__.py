@@ -8,10 +8,22 @@ class Defs():
 
     from .keywords import gpkeywords
 
-    select = [ 'linear_algebra', 'symbolic_operators', 'conversions',
-        'operators', 'number_theoretical', 'elliptic_curves', 'sums',
-        'transcendental', 'default', 'graphic', 'number_fields', 'polynomials',
-        'l_functions', 'modular_symbols', 'modular_forms' ]
+    select = [ 'linear_algebra',
+               #'symbolic_operators',
+               'conversions',
+               'operators',
+               'number_theoretical',
+               'elliptic_curves',
+               'sums',
+               'transcendental',
+               'default',
+               'graphic',
+               'number_fields',
+               'polynomials',
+               'l_functions',
+               'modular_symbols',
+               'modular_forms'
+               ]
 
 
 class gpLexer(RegexLexer):
