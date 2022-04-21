@@ -6,14 +6,19 @@ simple pygments lexer for Pari/GP http://pari.math.u-bordeaux.fr
 
 ::
 
-  pip3 install .
+  pip install .
 
 or
 
 ::
 
-  python3 setup.py install
+  python setup.py install
 
-## update
 
+## develop
+
+To update the list of keywords::
+
+  FUNCLIST=~/git/paridev/src/funclist
+  perl gp_lexer/get_gp_funclist.pl $FUNCLIST > gp_lexer/keywords.py
 
